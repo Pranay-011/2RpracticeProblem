@@ -50,28 +50,52 @@ public class EmployeeMain {
 
         }
 
+        Employee e1, e2, e3;
+        e1 = new Employee();
+        e2 = new Employee();
+        e3 = new Employee();
+        Employee[] arr1 = {e1, e2, e3};
+
+
         System.out.println(Arrays.toString(arr));
         //calong sort funtion
-        Employee[] sorted = sortSalaryOrder(arr);
+        Employee[] sorted = sortSalaryOrder(arr.clone());
         System.out.println("sorted array");
         System.out.println(Arrays.toString(sorted));
+        //sort it first
+        sortExperienceOrder(arr);
+        // print
 
+        System.out.println(Arrays.toString(arr));
 
     }
     //sorting by salary in descending order
     public static Employee[] sortSalaryOrder(Employee[] arr){
-        Employee[] response = arr.clone();
+        Employee[] response = arr;
         for (int i = 0; i < response.length; i++) {
             for (int j = 0; j < response.length - 1 ; j++) {
                 if(response[i].getSalary() < response[j+1].getSalary()){
                     //swapping
                     Employee temp = response[j];
-                    response[j] = response[j+1];
-                    response[j+1] = temp;
+                    response[j] = response[j + 1];
+                    response[j + 1] = temp;
                 }
 
             }
         }
         return response;
+    }
+
+    //method to sort employee array on the basis of experience
+    public static void sortExperienceOrder(Employee[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length - 1; j++) {
+                if (arr[j].getExperience() < arr[j + 1].getExperience()) {
+                    Employee temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
     }
 }
